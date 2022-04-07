@@ -18,7 +18,7 @@ jobs:
         run: |
           (cd $GITHUB_WORKSPACE/deployment && tar -czvf edgex-examples-helm.tar.gz helm)
 
-      - name: tar zip edgex jakarta helm
+      - name: upload helm tarball release artifact 
         uses: fnkr/github-action-ghr@v1
         if: startsWith(github.ref, 'refs/tags/')
         env:
