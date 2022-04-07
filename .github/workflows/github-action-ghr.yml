@@ -2,13 +2,13 @@ on: push
 name: Build and release on push
 jobs:
   release:
-    name: edgex-jakarta-helm 
+    name: create release artifacts 
     runs-on: ubuntu-latest
     steps:
-      - name: edgex-jakarta-helm
+      - name: tar zip edgex jakarta helm
         uses: fnkr/github-action-ghr@v1
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GHR_COMPRESS: gz
-          GHR_PATH: deployment/helm 
+          GHR_PATH: ${{ github.workspace }}/deployment/helm 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
