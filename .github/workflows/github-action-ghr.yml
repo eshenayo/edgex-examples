@@ -1,0 +1,14 @@
+on: push
+name: Build and release on push
+jobs:
+  release:
+    name: edgex-jakarta-helm 
+    runs-on: ubuntu-latest
+    steps:
+      - name: edgex-jakarta-helm
+        uses: fnkr/github-action-ghr@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GHR_COMPRESS: gz
+          GHR_PATH: deployment/helm 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
