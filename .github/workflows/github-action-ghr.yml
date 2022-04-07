@@ -5,10 +5,13 @@ jobs:
     name: create release artifacts 
     runs-on: ubuntu-latest
     steps:
+      - name: clone edgex examples repo
+        uses: actions/checkout@v3
+        ref: release_action
       - name: tar zip edgex jakarta helm
         uses: fnkr/github-action-ghr@v1
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GHR_COMPRESS: gz
-          GHR_PATH: ${{ github.workspace }}/deployment/helm 
+          GHR_PATH: edgex-examples/deployment/helm 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
